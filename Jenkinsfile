@@ -20,5 +20,20 @@ pipeline {
         sh './jenkins/scripts/test.sh'
       }
     }
+    stage('Deliver') {
+      steps {
+        sh './jenkins/scripts/deliver.sh'
+      }
+    }
+    stage('Input') {
+      steps {
+        input 'Finished using the web site? (Click "Proceed" to continue)'
+      }
+    }
+    stage('End') {
+      steps {
+        sh './jenkins/scripts/kill.sh'
+      }
+    }
   }
 }
